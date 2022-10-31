@@ -1,11 +1,16 @@
-using Jala_university_Aula13;
+using Jala_university_Aula13.Models;
+using Jala_university_Aula13.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<WalletService>();
+builder.Services.AddSingleton<IWallet, Wallet>();
+builder.Services.AddSingleton<ICurrency, Currency>();
+builder.Services.AddScoped<Money>();
+builder.Services.AddScoped<IWalletService, WalletService>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
